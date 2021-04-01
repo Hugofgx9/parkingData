@@ -2,7 +2,6 @@
   "name": "parking_data",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
   "scripts": {
     "start": "parcel serve ./src/index.html",
     "build": "parcel build ./src/index.html"
@@ -13,10 +12,10 @@
   "browserslist": "> 0.2%",
   "devDependencies": {
     "@parcel/transformer-image": "^2.0.0-beta.2",
-    "@parcel/transformer-sass": "^2.0.0-beta.2",
-    "parcel": "^2.0.0-beta.2"
+    "@parcel/transformer-sass": "^2.0.0-beta.2"
   },
   "dependencies": {
+    "parcel": "^2.0.0-beta.2",
     "animejs": "^3.2.1",
     "eslint": "^7.22.0",
     "leaflet": "^1.7.1"
