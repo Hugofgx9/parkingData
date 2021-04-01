@@ -1,0 +1,24 @@
+{
+  "name": "image_louise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "browserslist": "> 0.2%",
+  "devDependencies": {
+    "@parcel/transformer-image": "^2.0.0-beta.2",
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
+    "parcel": "^2.0.0-beta.2"
+  },
+  "dependencies": {
+    "animejs": "^3.2.1",
+    "eslint": "^7.22.0",
+    "leaflet": "^1.7.1"
+  }
+}
