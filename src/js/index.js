@@ -9,10 +9,12 @@ class MyMap {
   constructor() {
 
     this.createMap();
-    this.getData();
-    this.createInfoPopup();
-    this.createLegend();
-    this.getLocation();
+    this.getData().then( json => {
+      this.fillMapWithData(json)
+      this.createInfoPopup();
+      this.createLegend();
+      this.getLocation();
+    });
   }
 
   createIcon() {
@@ -34,14 +36,13 @@ class MyMap {
     let legendColor = L.control({position: 'bottomright'});
     legendColor.onAdd = () => {
       let div = L.DomUtil.create('ul', 'info legend right');
-      let grades = [0, 50, 100, 150, 200];
 
       // loop through our density intervals and generate a label with a colored square for each interval
-      for (let i = 0; i < grades.length; i++) {
+      for (let i = 0; i < 5; i++) {
         div.innerHTML +=
           `<li>
-            <i style="background: ${this._getColor( i / grades.length )} "></i>
-            <span>${grades[i] + (grades[i + 1] ? ` &ndash; ${grades[i + 1]}` : '+')}<span>
+            <i style="background: ${this._getColor( i / 4)} "></i>
+            <span>${i / 4 * 100} %<span>
           </li>`;
       }
 
@@ -54,8 +55,8 @@ class MyMap {
       let div = L.DomUtil.create('ul', 'info legend left');
       
       for (let i = 0; i < 4; i++) {
-        let nbOfPlaces = (i + 1) * 400;
-        let width = this._getRadius( nbOfPlaces );
+        let nbOfPlaces = (i + 1) * 300;
+        let width = this._getRadius( nbOfPlaces ) * 2; //car la width est le diametre
         div.innerHTML += `<li><i style="width: ${width}px; height: ${width}px "></i> <span>${nbOfPlaces}</span> </li>`;
       }
       return div;
@@ -97,14 +98,12 @@ class MyMap {
     this.info.addTo(this.map);
   }
 
-  getData() {
-    let query = 'https://opendata.bordeaux-metropole.fr/api/v2/catalog/datasets/st_park_p/records?limit=86&timezone=UTC&order_by=libres desc';
+  async getData() {
+    let query = 'https://opendata.bordeaux-metropole.fr/api/v2/catalog/datasets/st_park_p/records?limit=100&timezone=UTC&order_by=libres desc';
      
-    fetch(query).then( response => {
-      response.json().then( json => {
-        this.fillMapWithData(json.records);
-      })
-    })
+    const reponse = await fetch(query)
+    const json = await reponse.json();
+    return json.records
   }
 
   fillMapWithData(parksData) {

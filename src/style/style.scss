@@ -3,10 +3,14 @@
 section {
   width: 100vw;
   height: 100vh;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
   background-color: grey;
 
   #map{
     height: 100vh;
+    /* mobile viewport bug fix */
+    height: -webkit-fill-available;
     width: 100vw;
 
     .leaflet-control-container{
@@ -51,7 +55,7 @@ section {
 
           li {
             display: grid;
-            grid-template-columns: 50px 50px;
+            grid-template-columns: auto 50px;
 
             i {
               border-radius: 50%;
