@@ -35,16 +35,20 @@ class MyMap {
     //Legend color 
     let legendColor = L.control({position: 'bottomright'});
     legendColor.onAdd = () => {
-      let div = L.DomUtil.create('ul', 'info legend right');
+      let div = L.DomUtil.create('div', 'info legend right');
+      div.innerHTML += '<h4>Places libres restantes</h4>'
+      let ul = document.createElement('ul');
 
       // loop through our density intervals and generate a label with a colored square for each interval
       for (let i = 0; i < 5; i++) {
-        div.innerHTML +=
+        ul.innerHTML +=
           `<li>
             <i style="background: ${this._getColor( i / 4)} "></i>
             <span>${i / 4 * 100} %<span>
           </li>`;
       }
+
+      div.appendChild(ul);
 
       return div;
     };
@@ -53,12 +57,16 @@ class MyMap {
     let legendSize = L.control({position: 'bottomleft'});
     legendSize.onAdd = () => {
       let div = L.DomUtil.create('ul', 'info legend left');
+      div.innerHTML += '<h4>Capacité maximum</h4>'
+      let ul = document.createElement('ul');
       
       for (let i = 0; i < 4; i++) {
         let nbOfPlaces = (i + 1) * 300;
         let width = this._getRadius( nbOfPlaces ) * 2; //car la width est le diametre
         div.innerHTML += `<li><i style="width: ${width}px; height: ${width}px "></i> <span>${nbOfPlaces}</span> </li>`;
       }
+
+      div.appendChild(ul);
       return div;
     }
     
