@@ -10,20 +10,17 @@
   "author": "",
   "license": "ISC",
   "browserslist": [
-    "last 1 Chrome versions",
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+    "last 1 Chrome version"
   ],
   "devDependencies": {
     "@parcel/transformer-image": "^2.0.0-beta.2",
-    "@parcel/transformer-sass": "^2.0.0-beta.2",  
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
     "eslint": "^7.22.0"
   },
   "dependencies": {
-    "parcel": "^2.0.0-beta.2",
     "animejs": "^3.2.1",
-    "leaflet": "^1.7.1"
+    "babel-polyfill": "^6.26.0",
+    "leaflet": "^1.7.1",
+    "parcel": "^2.0.0-beta.2"
   }
 }
